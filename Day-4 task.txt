@@ -1,0 +1,117 @@
+Day-4 task
+
+1.How to compare two JSON have the same properties without order?
+var obj1 = { name: "Person 1", age:5 };
+var obj2 = { age:5, name: "Person 1" };
+2.Use the rest countries API url -> https://restcountries.eu/rest/v2/all and display all the country flags in console
+3.Use the same rest countries and print all countries name, region, sub region and population
+4.https://medium.com/@reach2arunprakash/www-guvi-io-zen-d395deec1373
+
+Question 1. How to compare two JSON have the same properties without order?
+
+var obj1 = { name: "Person 1", age:5 };
+var obj2 = { age:5, name: "Person 1" };
+
+Answer:Objects are reference types so we can’t just use === or == to compare 2 objects.
+There are 2 quick ways to compare objects
+1.JSON.stringify
+2._.isEqual() function
+JSON.stringify:
+If the key-value pair are ordered differently in the two objects but are the same, it will return false.
+so in the given example it will return false evn though both objects ara same key:value pair.
+onsole.log(JSON.stringify(obj1) === JSON.stringify(obj2));//false 
+_.isEqual() function:
+var obj1 = { name: "Person 1", age:5 };
+var obj2 = { age:5, name: "Person 1" };
+console.log(_.isEqual(arr1, arr2));//true
+The _.isEqual() function: is used to find that whether the 2 given arrays are same or not without considering order.
+Two arrays are the same if they have the same number of elements, both the property and the values need to be the same. 
+It may be beneficial in situations where the elements of the array are not known and we want to check whether they are the same or not.
+
+Syntax:_.isEqual(object, other)
+Parameters:
+It takes two arguments:
+
+object: The object can be an array.
+other: The other array holds.
+Return value:
+It returns true if the arrays passed are same otherwise it returns false.
+
+Question2:Use the rest countries API url -> https://restcountries.eu/rest/v2/all and display all the country flags in console
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <!-- <link rel="icon" href="%PUBLIC_URL%/favicon.ico" /> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta
+      name="description"
+      content="Web site created using create-react-app"
+    />
+<title>React App</title>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+
+<script>
+var request = new XMLHttpRequest();
+      request.open("GET","https://restcountries.com/v2/all",true)
+      request.send();
+      request.onload = function () {
+
+        console.log(this.response);
+        var data = JSON.parse(this.response);
+        console.log(data);
+
+        console.log(data[0].name);
+for(i=0;i<data.length;i++){
+          var a=data[i].flags.png
+console.log('%c ','font-size:400px;background: url('+ a +') no-repeat;');
+        }
+        }
+ </script>
+  </body>
+</html>
+Question3: Use the same rest countries and print all countries name, region, sub region and population
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <!-- <link rel="icon" href="%PUBLIC_URL%/favicon.ico" /> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta
+      name="description"
+      content="Web site created using create-react-app"
+    />
+<title>React App</title>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+
+<script>
+var request = new XMLHttpRequest();
+      request.open("GET","https://restcountries.com/v2/all",true)
+      request.send();
+      request.onload = function () {
+
+        console.log(this.response);
+        var data = JSON.parse(this.response);
+        console.log(data);
+
+        console.log(data[0].name);
+for(i=0;i<data.length;i++){
+           console.log(data[i].name)
+          console.log(data[i].region)
+          console.log(data[i].subregion); 
+          console.log(data[i].population);
+        }
+        }
+ </script>
+  </body>
+</html>
